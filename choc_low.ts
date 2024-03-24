@@ -2,7 +2,7 @@ const options: Options = {
   wallThickness: 4,
   wallShrouding: 0,
   webThickness: 0,
-  webMinThicknessFactor: 0.9,
+  webMinThicknessFactor: 0.8,
   keyBasis: "choc",
   screwIndices: [-1, -1, -1, -1, -1, -1],
   screwType: "screw insert",
@@ -23,9 +23,35 @@ const options: Options = {
 // In the basic/advanced tab, these values were:
 // screwIndices: [14.5, 3.5, 24.5, 30.5, 19.5, 42.5, 9.5]
 // connectorIndex: 38.7
-
+const totalAng=40;
+const baseAng=90;
+const baseAngTop=100;
+const totalAngTop = baseAng+totalAng-baseAngTop 
 const pinky=[1, -14,11]
 const pinkyouter=[0, -14,11]
+
+
+const thumbOrigin = new Trsf()
+  .rotate(0, [0, 0, 0], [1, 0, 0])
+  .rotate(-6., [0, 0, 0], [0, 1, 0])
+  .rotate(16, [0, 0, 0], [0, 0, 1])
+  .translate(-42, -99, 14.2)
+const tPivotOrigin = new Trsf()
+.placeOnSphere({
+          angle:0,
+          spacing:19.5,
+          curvature:0,
+          row:0,
+      })
+      .translate([60, 0, 0]) 
+const toPivotOrigin = new Trsf()
+.placeOnSphere({
+          angle:0,
+          spacing:19,
+          curvature:0,
+          row:1,
+      })
+      .translate([60, 0, 4]) 
 const curvature = {
   curvatureOfColumn: 15,
   curvatureOfRow: 5,
@@ -74,11 +100,11 @@ const upperKeysPlane = new Trsf()
   .translate(0, 0, 0, false)
 const pUpperKeysPlane = new Trsf()
   .rotate(0, [0, 0, 0], [0, 1, 0], false)
-  .rotate(15, [0, 0, 0], [1, 0, 0], false)
+  .rotate(10, [0, 0, 0], [1, 0, 0], false)
   .translate(0, 0, 0, false)
 const pDownKeysPlane = new Trsf()
   .rotate(0, [0, 0, 0], [0, 1, 0], false)
-  .rotate(15, [0, 0, 0], [1, 0, 0], false)
+  .rotate(10, [0, 0, 0], [1, 0, 0], false)
   .translate(0, 0,0, false)
 /** Definitions for the upper keys. */
 const fingers: Key[] = [
@@ -571,27 +597,7 @@ const fingers: Key[] = [
  * It's defined using a nearby key position,
  * then offset by some amount.
  */
-const thumbOrigin = new Trsf()
-  .rotate(0, [0, 0, 0], [1, 0, 0])
-  .rotate(-10., [0, 0, 0], [0, 1, 0])
-  .rotate(16, [0, 0, 0], [0, 0, 1])
-  .translate(-41, -99, 14.2)
-const tPivotOrigin = new Trsf()
-.placeOnSphere({
-          angle:0,
-          spacing:19.5,
-          curvature:0,
-          row:0,
-      })
-      .translate([55, 0, 0]) 
-const toPivotOrigin = new Trsf()
-.placeOnSphere({
-          angle:0,
-          spacing:19,
-          curvature:0,
-          row:1,
-      })
-      .translate([55, 0, 4]) 
+
 
   
 
@@ -603,10 +609,7 @@ const thumbCurvature = {
   spacingOfColumns: 20,
   spacingOfRows: 20
 }
-const totalAng=45;
-const baseAng=90;
-const baseAngTop=102;
-const totalAngTop = baseAng+totalAng-baseAngTop 
+
 
 const thumbs: Key[] = [
   {
