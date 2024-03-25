@@ -23,27 +23,29 @@ const options: Options = {
 // In the basic/advanced tab, these values were:
 // screwIndices: [14.5, 3.5, 24.5, 30.5, 19.5, 42.5, 9.5]
 // connectorIndex: 38.7
-const totalAng=40;
-const baseAng=90;
-const baseAngTop=100;
+const totalAng=33;
+const baseAng=107;
+const baseAngTop=113.6;
 const totalAngTop = baseAng+totalAng-baseAngTop 
 const pinky=[1, -14,11]
 const pinkyouter=[0, -14,11]
 
 
 const thumbOrigin = new Trsf()
-  .rotate(0, [0, 0, 0], [1, 0, 0])
-  .rotate(-6., [0, 0, 0], [0, 1, 0])
-  .rotate(16, [0, 0, 0], [0, 0, 1])
-  .translate(-42, -99, 14.2)
+  .translate(-42, -110, 17.2)
+  .rotate(0, [0, 0, 0], [0, 0, 1])
+  .rotate(5, [0, 0, 0], [1, 0, 0])
+  .rotate(0., [0, 0, 0], [0, 1, 0])
+
+
 const tPivotOrigin = new Trsf()
 .placeOnSphere({
           angle:0,
-          spacing:19.5,
+          spacing:19,
           curvature:0,
           row:0,
       })
-      .translate([60, 0, 0]) 
+      .translate([72, 0, 0]) 
 const toPivotOrigin = new Trsf()
 .placeOnSphere({
           angle:0,
@@ -51,7 +53,7 @@ const toPivotOrigin = new Trsf()
           curvature:0,
           row:1,
       })
-      .translate([60, 0, 4]) 
+      .translate([72, 0, 4]) 
 const curvature = {
   curvatureOfColumn: 15,
   curvatureOfRow: 5,
