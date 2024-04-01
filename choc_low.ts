@@ -23,18 +23,17 @@ const options: Options = {
 // In the basic/advanced tab, these values were:
 // screwIndices: [14.5, 3.5, 24.5, 30.5, 19.5, 42.5, 9.5]
 // connectorIndex: 38.7
-const totalAng=33;
-const baseAng=107;
-const baseAngTop=113.6;
+const totalAng=40;
+const baseAng=106;
+const baseAngTop=113;
 const totalAngTop = baseAng+totalAng-baseAngTop 
-const pinky=[1, -14,11]
-const pinkyouter=[0, -14,11]
+
 
 
 const thumbOrigin = new Trsf()
-  .translate(-42, -110, 17.2)
+  .translate(-40, -116, 17.2)
   .rotate(0, [0, 0, 0], [0, 0, 1])
-  .rotate(5, [0, 0, 0], [1, 0, 0])
+  .rotate(0, [0, 0, 0], [1, 0, 0])
   .rotate(0., [0, 0, 0], [0, 1, 0])
 
 
@@ -53,7 +52,7 @@ const toPivotOrigin = new Trsf()
           curvature:0,
           row:1,
       })
-      .translate([72, 0, 4]) 
+      .translate([74, 0, 4]) 
 const curvature = {
   curvatureOfColumn: 15,
   curvatureOfRow: 5,
@@ -68,28 +67,27 @@ const fcurvature = {
   spacingOfColumns: 19.5,
   arc: 0
 }
-const pUpCurvature = {
-  curvatureOfColumn: 10,
+const pinky=[2, -14,11]
+const pinkyouter=[1, -14,11]
+const pCurvature = {
+  curvatureOfColumn: 17,
   curvatureOfRow: 0,
   spacingOfRows: 20,
   spacingOfColumns: 20.5,
-  arc: 1
+  arc: 0
 }
-const pDownCurvature = {
-  curvatureOfColumn: 30,
+const pOuterCurvature = {
+  curvatureOfColumn: 17,
   curvatureOfRow: 0,
-  spacingOfRows: 19,
+  spacingOfRows: 20,
   spacingOfColumns: 20.5,
-  arc: 1
+  arc: 0
 }
 /**
  * Useful for setting a different curvature
  * for the pinky keys.
  */
-const pinkyCurvature = {
-  ...curvature,
-  curvatureOfColumn: 30
-}
+
 
 /**
  * The plane used to position the upper keys.
@@ -102,11 +100,13 @@ const upperKeysPlane = new Trsf()
   .translate(0, 0, 0, false)
 const pUpperKeysPlane = new Trsf()
   .rotate(0, [0, 0, 0], [0, 1, 0], false)
-  .rotate(10, [0, 0, 0], [1, 0, 0], false)
+  .rotate(5, [0, 0, 0], [1, 0, 0], false)
+  .rotate(-2, [0, 0, 0], [0, 0, 1], false)
   .translate(0, 0, 0, false)
 const pDownKeysPlane = new Trsf()
   .rotate(0, [0, 0, 0], [0, 1, 0], false)
-  .rotate(10, [0, 0, 0], [1, 0, 0], false)
+  .rotate(5, [0, 0, 0], [1, 0, 0], false)
+  .rotate(-2, [0, 0, 0], [0, 0, 1], false)
   .translate(0, 0,0, false)
 /** Definitions for the upper keys. */
 const fingers: Key[] = [
@@ -466,7 +466,7 @@ const fingers: Key[] = [
     cluster: "fingers",
     position: new Trsf()
       .placeOnMatrix({
-        ...pUpCurvature,
+        ...pCurvature,
         column: 1,
         row: -2
       })
@@ -484,7 +484,7 @@ const fingers: Key[] = [
     cluster: "fingers",
     position: new Trsf()
       .placeOnMatrix({
-        ...pUpCurvature,
+        ...pCurvature,
         column: 1,
         row: -1
       })
@@ -503,12 +503,12 @@ const fingers: Key[] = [
     cluster: "fingers",
     position: new Trsf()
       .placeOnMatrix({
-        ...pDownCurvature,
+        ...pCurvature,
         column: 1,
         row: 0
       })
       .translate(pinky[0], pinky[1], pinky[2])
-      .transformBy(pUpperKeysPlane)
+      .transformBy(pDownKeysPlane)
   },
   {
     type: "choc",
@@ -521,7 +521,7 @@ const fingers: Key[] = [
     cluster: "fingers",
     position: new Trsf()
       .placeOnMatrix({
-        ...pDownCurvature,
+        ...pCurvature,
         column: 1,
         row: 1
       })
@@ -538,7 +538,7 @@ const fingers: Key[] = [
     cluster: "fingers",
     position: new Trsf()
       .placeOnMatrix({
-        ...pUpCurvature,
+        ...pOuterCurvature,
         column: 2,
         row: -2
       })
@@ -553,7 +553,7 @@ const fingers: Key[] = [
     cluster: "fingers",
     position: new Trsf()
       .placeOnMatrix({
-        ...pUpCurvature,
+        ...pOuterCurvature,
         column: 2,
         row: -1
       })
@@ -571,12 +571,12 @@ const fingers: Key[] = [
     cluster: "fingers",
     position: new Trsf()
       .placeOnMatrix({
-        ...pDownCurvature,
+        ...pOuterCurvature,
         column: 2,
         row: 0
       })
       .translate(pinkyouter[0], pinkyouter[1], pinkyouter[2])
-      .transformBy(pDownKeysPlane)
+      .transformBy(pUpperKeysPlane)
   },
   {
     type: "choc",
@@ -585,12 +585,12 @@ const fingers: Key[] = [
     cluster: "fingers",
     position: new Trsf()
       .placeOnMatrix({
-        ...pDownCurvature,
+        ...pOuterCurvature,
         column: 2,
         row: 1
       })
       .translate(pinkyouter[0], pinkyouter[1], pinkyouter[2])
-      .transformBy(pDownKeysPlane)
+      .transformBy(pUpperKeysPlane)
   }
 ]
 
